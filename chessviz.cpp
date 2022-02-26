@@ -11,7 +11,7 @@ char desk[deskside][deskside] = {
 	{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 	{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}};
 
-void printdesk(char desk[8][8])
+void printdesk(char desk[deskside][deskside])
 {
 	int i, j;
 	for(i = 0; i < deskside; i++)
