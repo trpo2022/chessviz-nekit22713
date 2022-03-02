@@ -1,5 +1,1 @@
-*.o
 *.exe
-.main.c.swp 
-main.c~ 
-*.dll

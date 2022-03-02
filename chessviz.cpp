@@ -1,17 +1,7 @@
 #include <stdio.h>
 #define deskside 8
 
-char desk[deskside][deskside] = {
-	{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-	{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-	{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}};
-
-void printdesk(char Desk[8][8])
+void printdesk(char desk[deskside][deskside])
 {
 	int i, j;
 	for(i = 0; i < deskside; i++)
@@ -29,5 +19,15 @@ void printdesk(char Desk[8][8])
 
 int main()
 {
+	char desk[deskside][deskside] = {
+	{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+	{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+	{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}};
+	
 	printdesk(desk);
 }
