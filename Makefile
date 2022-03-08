@@ -1,8 +1,8 @@
-all: chess
-chess: chessviz.cpp
-	gcc -Wall -Werror -o chess chessviz.cpp
+all: chessviz
+chessviz: chessviz.cpp
+	gcc -Wall -Werror -o chessviz chessviz.cpp
 clear:
-	rm chess.exe
+	rm chessviz.exe
 run:
-	./chess.exe
+	./chessviz.exe
 	
