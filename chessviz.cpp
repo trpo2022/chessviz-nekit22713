@@ -2,9 +2,10 @@
 #define deskside 8
 
 void printdesk(char desk[deskside][deskside]) {
-    int i, j;
+    int i;
     for (i = 0; i < deskside; i++) {
-        printf("%d", 8 - i);
+        printf("%d", deskside - i);
+        int j;
         for (j = 0; j < deskside; j++) {
             printf(" %c", desk[i][j]);
         }
