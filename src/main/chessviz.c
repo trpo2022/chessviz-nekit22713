@@ -3,7 +3,7 @@
 
 int main()
 {
-    int turnp = 0, finish = 0;
+    int turnp = 0,
     char desk[9][9]
             = {{'8', 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
                {'7', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
