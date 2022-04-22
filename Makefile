@@ -14,7 +14,7 @@ $(BIN_DIR)$(NAME) : $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ_FILE) -o $(BIN_DIR)$(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) -I $(SRC_BIN) -c $< -o $(OBJ_DIR)$@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -I $(SRC_DIR) -c $< -o $(OBJ_DIR)$@
 
 -include %.d
 
