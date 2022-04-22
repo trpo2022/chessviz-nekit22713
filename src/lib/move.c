@@ -75,10 +75,10 @@ void printerror()
 }
 
 
-void move(char board[9][9], int xs, int xf, int ys, int yf)
+void move(char desk[9][9], int xs, int xf, int ys, int yf)
 {
-    board[xf][yf] = board[xs][ys];
-    board[xs][ys] = ' ';
+    desk[xf][yf] = desk[xs][ys];
+    desk[xs][ys] = ' ';
 }
 
 
@@ -114,10 +114,10 @@ int movecheck(char desk[9][9], int color)
         move(desk, xs, xf, ys, yf);
     else {
         printerror();
-        print(desk);
+        printdesk(desk);
         return 0;
     }
-    print(desk);
+    printdesk(desk);
     return 1;
 }
 
