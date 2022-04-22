@@ -106,7 +106,11 @@ int movecheck(char desk[9][9], int color)
          && ys == yf)
         || ((desk[xs][ys] == 'P' || desk[xs][ys] == 'p')
             && (desk[xf][yf] == 'P' || desk[xf][yf] == 'p')
-            && abs(xf - xs) == 1 && abs(ys - yf) == 1))
+            && abs(xf - xs) == 1 && abs(ys - yf) == 1) || ((desk[xs][ys] == 'P' || desk[xs][ys] == 'p') && abs(xf - xs) == 2
+         && ys == yf)
+        || ((desk[xs][ys] == 'P' || desk[xs][ys] == 'p')
+            && (desk[xf][yf] == 'P' || desk[xf][yf] == 'p')
+            && abs(xf - xs) == 2 && abs(ys - yf) == 2))
         move(desk, xs, xf, ys, yf);
     else {
         printerror();
