@@ -1,45 +1,23 @@
-APP_NAME = chessviz
-LIB_NAME = libchessviz
-
 CFLAGS = -Wall -Wextra -Werror
-CPPFLAGS = -I src -MP -MMD
-LDFLAGS =
-LDLIBS =
+CPPFLAGS = -MMD
 
-BIN_DIR = bin
-OBJ_DIR = obj
-SRC_DIR = src
+BIN_DIR = ./bin/
+OBJ_DIR = ./obj/
+SRC_DIR = ./src/
+SRC = $(wildcard $(SRC_DIR)*/*.c)
+OBJ = $(patsubst %.c, %.o, $(SRC))
+OBJ_FILE = $(patsubst ./%.c, $(OBJ_DIR)%.o, $(SRC))
+CC = gcc
+NAME = chessviz
 
-APP_PATH = $(BIN_DIR)/$(APP_NAME)
-LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
+$(BIN_DIR)$(NAME) : $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ_FILE) -o $(BIN_DIR)$(NAME)
 
-SRC_EXT = c
+%.o : %.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -I $(SRC_DIR) -c $< -o $(OBJ_DIR)$@
 
-APP_SOURCES = $(shell find $(SRC_DIR)/$(APP_NAME) -name '*.$(SRC_EXT)')
-APP_OBJECTS = $(APP_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
-
-LIB_SOURCES = $(shell find $(SRC_DIR)/$(LIB_NAME) -name '*.$(SRC_EXT)')
-LIB_OBJECTS = $(LIB_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
-
-DEPS = $(APP_OBJECTS:.o=.d) $(LIB_OBJECTS:.o=.d)
-
-.PHONY: all
-all: $(APP_PATH)
-
--include $(DEPS)
-
-$(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
-
-$(LIB_PATH): $(LIB_OBJECTS)
-	ar rcs $@ $^
-
-$(OBJ_DIR)/%.o: %.c
-	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+-include %.d
 
 .PHONY: clean
-clean:
-	$(RM) $(APP_PATH) $(LIB_PATH)
-	find $(OBJ_DIR) -name '*.o' -exec $(RM) '{}' \;
-	find $(OBJ_DIR) -name '*.d' -exec $(RM) '{}' \;
-	
+clean : 
+	rm $(OBJ_FILE) $(BIN_DIR)$(NAME) $(OBJ_DIR)*/*/*.d
