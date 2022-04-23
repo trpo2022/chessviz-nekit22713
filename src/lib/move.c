@@ -1,5 +1,5 @@
-#include <lib/print.h>
 #include <lib/move.h>
+#include <lib/print.h>
 char turn[5];
 
 void yfcheck(int* yf)
