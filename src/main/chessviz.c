@@ -1,5 +1,5 @@
-#include <lib/print.h>
 #include <lib/move.h>
+#include <lib/print.h>
 
 int main()
 {
