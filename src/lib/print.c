@@ -1,12 +1,16 @@
-#include <lib/print.h>
+#include <lib/Print.h>
+#include <lib/move.h>
 
-void printdesk(char desk[9][9])
+void printdesk(char desk[desk_size][desk_size])
 {
-    int i, j;
-    for (i = 0; i < 9; i++) {
-        for (j = 0; j < 9; j++) {
-            printf(" %c", desk[i][j]);
+    int i = 0, j = 0;
+    printf("\n");
+    for (i = 0; i < desk_size; i++) {
+        printf("%d ", desk_size - i);
+        for (j = 0; j < desk_size; j++) {
+        	printf("%c ", desk[i][j]);
         }
         printf("\n");
     }
+    printf("  a b c d e f g h \n");
 }
