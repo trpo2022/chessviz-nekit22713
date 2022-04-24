@@ -3,18 +3,41 @@
 
 int main()
 {
-    int turnp = 0, finish = 0;
-    char desk[9][9]
-            = {{'8', 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-               {'7', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-               {'6', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-               {'5', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-               {'4', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-               {'3', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-               {'2', 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-               {'1', 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'},
-               {' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}};
+    char desk[desk_size][desk_size]
+            = {{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+               {'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+               {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+               {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+               {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+               {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+               {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+               {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}};
 
+    motion motion;
     printdesk(desk);
-    readmove(desk, finish, turnp);
+    char step[10];
+    float turnnumber = 1;
+    bool moveW = true;
+    while (true) {
+        printf("%d. ", (int)turnnumber);
+        turnnumber += 0.5;
+        scanf("%s", &step);
+        if (turn(step, motion, desk, moveW) != 0) {
+            printf("Try again\n");
+            turnnumber -= 0.5;
+            continue;
+        };
+        printdesk(desk);
+        printf("\n");
+        if ((step[6] == '#') || (step[5] == '#')) {
+            if (moveW == true)
+                printf("Black Wins!\n");
+            ;
+            if (moveW == false)
+                printf("White Wins!\n");
+            break;
+        }
+        moveW = !moveW;
+    }
+    return 0;
 }
