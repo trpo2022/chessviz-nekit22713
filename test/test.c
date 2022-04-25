@@ -13,7 +13,6 @@ char desk[desk_size][desk_size]
 
 motion mt;
 
-
 CTEST(quiet_step_suite, step_size_false)
 {
     char step[10] = "Nb1-c3B";
