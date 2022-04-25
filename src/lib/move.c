@@ -33,8 +33,7 @@ void translate(char* step, motion* motion)
     }
 }
 
-bool moveKing(
-        char desk[desk_size][desk_size], motion motion, bool error_output)
+bool moveKing(char desk[desk_size][desk_size], motion motion, bool error_output)
 {
     if (!((desk[motion.y1][motion.x1] == 'K')
           || (desk[motion.y1][motion.x1] == 'k'))) {
@@ -173,8 +172,7 @@ bool moveQueen(
     return true;
 }
 
-bool moveRook(
-        char desk[desk_size][desk_size], motion motion, bool error_output)
+bool moveRook(char desk[desk_size][desk_size], motion motion, bool error_output)
 {
     if (!((desk[motion.y1][motion.x1] == 'R')
           || (desk[motion.y1][motion.x1] == 'r'))) {
@@ -332,7 +330,10 @@ bool moveBishop(
 }
 
 bool movePawn(
-        char* step, motion motion, char desk[desk_size][desk_size], bool moveW,
+        char* step,
+        motion motion,
+        char desk[desk_size][desk_size],
+        bool moveW,
         bool error_output)
 {
     if (!((step[2] == '-') || (step[2] == 'x'))) {
@@ -482,7 +483,10 @@ bool movePawn(
 }
 
 bool movecheck(
-        char* step, motion motion, char desk[desk_size][desk_size], bool moveW,
+        char* step,
+        motion motion,
+        char desk[desk_size][desk_size],
+        bool moveW,
         bool output)
 {
     bool error_output;
@@ -649,9 +653,7 @@ bool movecheck(
     return true;
 }
 
-int turn(
-        char* step, motion motion, char desk[desk_size][desk_size],
-        bool moveW)
+int turn(char* step, motion motion, char desk[desk_size][desk_size], bool moveW)
 {
     char type;
     bool output = true;
