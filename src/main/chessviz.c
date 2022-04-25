@@ -15,7 +15,7 @@ int main()
 
     motion motion;
     printdesk(desk);
-    char *step;
+    char* step;
     float turnnumber = 1;
     bool moveW = true;
     while (true) {
