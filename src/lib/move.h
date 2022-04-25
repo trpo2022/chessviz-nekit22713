@@ -33,11 +33,17 @@ bool moveBishop(
         char desk[desk_size][desk_size], motion motion, bool error_output);
 
 bool movePawn(
-        char* step, motion motion, char desk[desk_size][desk_size], bool moveW,
+        char* step,
+        motion motion,
+        char desk[desk_size][desk_size],
+        bool moveW,
         bool error_output);
 
 bool movecheck(
-        char* step, motion motion, char desk[desk_size][desk_size], bool moveW,
+        char* step,
+        motion motion,
+        char desk[desk_size][desk_size],
+        bool moveW,
         bool output);
 
 int turn(
