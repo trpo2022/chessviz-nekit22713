@@ -15,13 +15,13 @@ int main()
 
     motion motion;
     printdesk(desk);
-    char* step;
+    char step[10];
     float turnnumber = 1;
     bool moveW = true;
     while (true) {
         printf("%d. ", (int)turnnumber);
         turnnumber += 0.5;
-        scanf("%s", &step);
+        scanf("%s", step);
         if (turn(step, motion, desk, moveW) != 0) {
             printf("Try again\n");
             turnnumber -= 0.5;
