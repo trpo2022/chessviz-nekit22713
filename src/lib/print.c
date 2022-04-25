@@ -1,4 +1,4 @@
-#include <lib/Print.h>
+#include <lib/print.h>
 #include <lib/move.h>
 
 void printdesk(char desk[desk_size][desk_size])
