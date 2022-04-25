@@ -8,7 +8,7 @@ void printdesk(char desk[desk_size][desk_size])
     for (i = 0; i < desk_size; i++) {
         printf("%d ", desk_size - i);
         for (j = 0; j < desk_size; j++) {
-        	printf("%c ", desk[i][j]);
+            printf("%c ", desk[i][j]);
         }
         printf("\n");
     }
