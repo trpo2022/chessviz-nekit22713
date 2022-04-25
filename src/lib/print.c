@@ -1,7 +1,6 @@
 #include <lib/move.h>
 #include <lib/print.h>
 
-
 void printdesk(char desk[desk_size][desk_size])
 {
     int i = 0, j = 0;
