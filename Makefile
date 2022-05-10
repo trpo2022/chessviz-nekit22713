@@ -1,40 +1,44 @@
 CFLAGS = -Wall -Wextra -Werror
-CPPFLAGS = -MMD
-SRC_DIR = ./src/
-OBJ_DIR = ./obj/
-BIN_DIR = ./bin/
-TEST_DIR = ./test/
-LIB_DIR = ./src/lib/
+CPdPFLAGS = -MMD
+PREF_SRC = ./src/
+PREF_OBJ = ./obj/
+PREF_BIN = ./bin/
+PREF_TEST = ./test/
+PREF_LIB = ./src/libchessviz/
 
 CC = gcc
 TARGET = chessviz
 TEST_TARGET = chessviz_test
 
-TEST = $(wildcard $(TEST_DIR)*.c)
+TEST = $(wildcard $(PREF_TEST)*.c)
 TEST_OBJ = $(patsubst %.c, %.o, $(TEST))
-POST_TEST = $(patsubst ./%.c, $(OBJ_DIR)%.o, $(TEST))
-
-SRC = $(wildcard $(SRC_DIR)*/*.c)
+POST_TEST = $(patsubst ./%.c, $(PREF_OBJ)%.o, $(TEST))
+SRC = $(wildcard $(PREF_SRC)*/*.c)
 OBJ = $(patsubst %.c, %.o, $(SRC))
-POST_OBJ = $(patsubst ./%.c, $(OBJ_DIR)%.o, $(SRC))
-
-LIB = $(wildcard $(LIB_DIR)*.c)
+POST_OBJ = $(patsubst ./%.c, $(PREF_OBJ)%.o, $(SRC))
+STATIC = ./obj/src/libchessviz/static.a
+LIB = $(wildcard $(PREF_LIB)*.c)
 LIB_OBJ = $(patsubst %.c, %.o, $(LIB))
-POST_LIB = $(patsubst ./%.c, $(OBJ_DIR)%.o, $(LIB))
+POST_LIB = $(patsubst ./%.c, $(PREF_OBJ)%.o, $(LIB))
 
-all : $(BIN_DIR)$(TARGET)
+.PHONY: all
+all : $(PREF_BIN)$(TARGET)
 
-$(BIN_DIR)$(TARGET) : $(OBJ)
-	$(CC) $(CFLAGS) $(POST_OBJ) -o $(BIN_DIR)$(TARGET)
+$(PREF_BIN)$(TARGET) : ./src/main/main.o $(STATIC)
+	$(CC) $(CFLAGS) ./obj/src/main/main.o $(STATIC) -o $(PREF_BIN)$(TARGET)
 
-.PHONY: test
-test : $(TEST_OBJ) $(LIB_OBJ)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -I $(SRC_DIR) $(POST_LIB) $(POST_TEST) -o $(BIN_DIR)$(TEST_TARGET)
-	
 %.o : %.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) -I $(SRC_DIR) -c $< -o $(OBJ_DIR)$@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -I $(PREF_SRC) -c $< -o $(PREF_OBJ)$@
 
 -include %.d
 
-clean : 
-	rm $(POST_OBJ) $(BIN_DIR)$(TARGET) $(OBJ_DIR)*/*/*.d $(POST_TEST) $(PREF_OBJ)*/*.d
+$(STATIC) : $(LIB_OBJ)
+	ar rcs $@ $(POST_LIB)
+
+.PHONY: test
+test : $(TEST_OBJ) $(STATIC)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -I $(PREF_SRC) $(POST_TEST) $(STATIC) -o $(PREF_BIN)$(TEST_TARGET)
+
+.PHONY: clean
+clean :
+	rm $(POST_OBJ) $(PREF_BIN)$(TARGET) $(PREF_OBJ)*/*/*.d $(POST_TEST) $(PREF_OBJ)*/*.d $(PREF_OBJ)*/*/*.a $(PREF_BIN)$(TEST_TARGET)
