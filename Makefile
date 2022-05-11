@@ -8,6 +8,7 @@ PREF_LIB = ./src/lib/
 
 CC = gcc
 TARGET = chessviz
+TEST_TARGET = chessviz_test
 
 TEST = $(wildcard $(PREF_TEST)*.c)
 TEST_OBJ = $(patsubst %.c, %.o, $(TEST))
@@ -33,6 +34,10 @@ $(PREF_BIN)$(TARGET) : ./src/main/chessviz.o $(STATIC)
 
 $(STATIC) : $(LIB_OBJ)
 	ar rcs $@ $(POST_LIB)
+
+.PHONY: test
+test : $(TEST_OBJ) $(STATIC)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -I $(PREF_SRC) $(POST_TEST) $(STATIC) -o $(PREF_BIN)$(TEST_TARGET)
 
 .PHONY: clean
 clean :
