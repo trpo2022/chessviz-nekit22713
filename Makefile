@@ -8,7 +8,6 @@ PREF_LIB = ./src/libchessviz/
 
 CC = gcc
 TARGET = chessviz
-TEST_TARGET = chessviz_test
 
 TEST = $(wildcard $(PREF_TEST)*.c)
 TEST_OBJ = $(patsubst %.c, %.o, $(TEST))
